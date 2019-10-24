@@ -1,13 +1,21 @@
 'use strict';
 
+import "./pages/index.css";
+
+import {Api} from "./Api.js";
+import {Card} from "./Card.js";
+import {CardList} from "./CardList.js";
+import {Popup} from "./Popup.js";
+
+const serverUrl = NODE_ENV === 'development' ? 'http://praktikum.tk/cohort2' : 'https://praktikum.tk/cohort2'
 const placesList = document.querySelector('.places-list');
 const popupEdit = document.querySelector('.popup-edit');
 const form = document.forms.new;
 const formEdit = document.forms.second;
 let cardsArray = [];
-let cardsList = new CardList(document.querySelector('.places-list'), cardsArray);
+let cardsList = new CardList(document.querySelector('.places-list'), cardsArray, form);
 const config = {
-  url: 'http://95.216.175.5/cohort2',
+  url: serverUrl,
   headers: {
     authorization: 'c39118be-f59d-44d8-b478-001a851a6b1e',
     'Content-Type': 'application/json',
@@ -140,15 +148,17 @@ api.getData()
 api.getInitialCards()
   .then(cards => {
     for(let i = 0; i < cards.length; i++) {
-      cardsArray.push(new Card(cards[i].name, cards[i].link));
+      cardsArray.push(new Card(cards[i].name, cards[i].link, placesList));
     };
   })
   .then(() => {
     cardsList.render();
   })
-  .catch();
+  .catch( err => {
+    console.log(err);
+  });
 
-let popup = new Popup();
+let popup = new Popup(form, formEdit);
 
 
 

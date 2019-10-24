@@ -1,7 +1,9 @@
-class Popup {
-    constructor() {
+export class Popup {
+    constructor(form, formEdit) {
       this.popupOpen = document.querySelector('.user-info__button');
       this.buttonEdit = document.querySelector('.user-info__button-edit');
+      this.form = form;
+      this.formEdit = formEdit;
     }
 
     open(event) {
@@ -25,15 +27,15 @@ class Popup {
     close(event) {
       event.target.parentElement.parentElement.classList.toggle('popup_is-opened');
       if (event.target.parentElement.parentElement.classList.contains('popup-edit')) {
-        formEdit.elements[0].value = document.querySelector('.user-info__name').textContent;
-        formEdit.elements[1].value = document.querySelector('.user-info__job').textContent;
-        let spans = formEdit.querySelectorAll('.popup__error');
+        this.formEdit.elements[0].value = document.querySelector('.user-info__name').textContent;
+        this.formEdit.elements[1].value = document.querySelector('.user-info__job').textContent;
+        let spans = this.formEdit.querySelectorAll('.popup__error');
         spans[0].textContent = '';
         spans[1].textContent = '';
       } else if (event.target.parentElement.parentElement.classList.contains('popup-images')) {
         event.target.parentElement.removeChild(document.querySelector('.big-image'));
       } else {
-        form.reset();
+        this.form.reset();
         Array.from(document.querySelectorAll('.popup .popup__error')).forEach(elem => {
           elem.textContent = '';
         });

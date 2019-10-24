@@ -1,7 +1,8 @@
-class Card {
-    constructor(text, imgSrc) {
+export class Card {
+    constructor(text, imgSrc, placesList) {
       this.text = text;
       this.imgSrc = imgSrc;
+      this.placesList = placesList;
       this.likeButton = this.like.bind(this);
       this.removeButton = this.remove.bind(this);
       this.cardElement = this.create();
@@ -41,6 +42,6 @@ class Card {
       cardDelete.querySelector('.place-card__like-icon').classList.add('.del');
       cardDelete.querySelector('.place-card__like-icon').removeEventListener('click', this.likeButton);
       let delElement = document.querySelector('.del');
-      placesList.removeChild(delElement);
+      this.placesList.removeChild(delElement);
     }
 }
