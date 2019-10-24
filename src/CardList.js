@@ -1,12 +1,13 @@
-class CardList {
-    constructor(container, cardsArray) {
+export class CardList {
+    constructor(container, cardsArray, form) {
       this.container = container;
       this.cardsArray = cardsArray;
+      this.form = form;
     }
 
     render() {
       for (let i = 0; i < this.cardsArray.length; i++) {
-        this.container.appendChild(cardsArray[i].cardElement);
+        this.container.appendChild(this.cardsArray[i].cardElement);
       }
     }
 
