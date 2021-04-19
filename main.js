@@ -7,7 +7,7 @@ const formEdit = document.forms.second;
 let cardsArray = [];
 let cardsList = new CardList(document.querySelector('.places-list'), cardsArray);
 const config = {
-  url: 'http://95.216.175.5/cohort2',
+  url: 'https://nomoreparties.co/cohort2',
   headers: {
     authorization: 'c39118be-f59d-44d8-b478-001a851a6b1e',
     'Content-Type': 'application/json',
